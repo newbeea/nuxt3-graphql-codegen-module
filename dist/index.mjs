@@ -1,6 +1,7 @@
 import { defineNuxtModule } from '@nuxt/kit';
 import { loadContext, generate } from '@graphql-codegen/cli';
 import consola from 'consola';
+import defu from 'defu';
 
 const index = defineNuxtModule({
   meta: {
@@ -8,15 +9,15 @@ const index = defineNuxtModule({
     configKey: "graphqlCodegen"
   },
   async setup(options, nuxt) {
-    async function codegenGenerateTypings() {
+    async function generateCode() {
       const start = Date.now();
-      const config = (await loadContext()).getConfig();
+      const xmlConfig = (await loadContext()).getConfig();
+      const config = defu(options, xmlConfig);
       await generate(config, true);
       const time = Date.now() - start;
-      consola.success(`GraphQL typings generated in ${time}ms`);
+      consola.success(`GraphQL code generated in ${time}ms`);
     }
-    nuxt.hook("build:before", codegenGenerateTypings);
-    nuxt.hook("builder:watch", codegenGenerateTypings);
+    nuxt.hook("builder:watch", generateCode);
   }
 });
 

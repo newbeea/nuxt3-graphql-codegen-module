@@ -1,6 +1,6 @@
 {
   "name": "@nuxt3/graphql-codegen-module",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "description": "Nuxt module for Graphql code generator",
   "keywords": [
     "nuxt",
@@ -39,7 +39,8 @@
   "dependencies": {
     "@nuxt/kit": "npm:@nuxt/kit-edge@latest",
     "@nuxt/types": "^2.15.8",
-    "consola": "^2.15.3"
+    "consola": "^2.15.3",
+    "defu": "^5.0.0"
   },
   "peerDependencies": {
     "graphql": "^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"

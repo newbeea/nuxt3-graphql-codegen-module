@@ -4,6 +4,7 @@ import consola from "consola";
 import type { Types } from "@graphql-codegen/plugin-helpers";
 // @ts-expect-error #app resolved by Nuxt3
 import { NuxtApp } from '#app'
+import defu from "defu";
 
 type CodegenModuleOptions = Types.Config;
 
@@ -16,22 +17,23 @@ export default defineNuxtModule<CodegenModuleOptions>({
   async setup(options: CodegenModuleOptions, nuxt: NuxtApp) {
     async function generateCode() {
       const start = Date.now();
-      const config = (await loadContext()).getConfig();
+      const xmlConfig = (await loadContext()).getConfig()
+      const config = defu(options, xmlConfig)
       await generate(config, true);
       const time = Date.now() - start;
       consola.success(`GraphQL code generated in ${time}ms`);
     }
 
-    nuxt.hook("build:before", generateCode);
+    // nuxt.hook("build:before", generateCode);
     nuxt.hook("builder:watch", generateCode);
   },
 })
 
 declare module '@nuxt/schema' {
   interface NuxtConfig {
-    graphqlCodegen?: CodegenModuleOptions
+    graphqlCodegen?: Partial<CodegenModuleOptions>
   }
   interface NuxtOptions {
-    graphqlCodegen?: CodegenModuleOptions
+    graphqlCodegen?: Partial<CodegenModuleOptions>
   }
 }

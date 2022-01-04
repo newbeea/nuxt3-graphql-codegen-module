@@ -6,10 +6,10 @@ declare const _default: _nuxt_schema.NuxtModule<Types.Config>;
 
 declare module '@nuxt/schema' {
     interface NuxtConfig {
-        graphqlCodegen?: CodegenModuleOptions;
+        graphqlCodegen?: Partial<CodegenModuleOptions>;
     }
     interface NuxtOptions {
-        graphqlCodegen?: CodegenModuleOptions;
+        graphqlCodegen?: Partial<CodegenModuleOptions>;
     }
 }
 

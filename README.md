@@ -22,7 +22,8 @@ export default {
   }
 }
 ```
-
+## Demo
+[nuxt3-apollo-starter](https://github.com/newbeea/nuxt3-apollo-starter)
 ## Usage
 write codegen.yml in root folder
 For example:

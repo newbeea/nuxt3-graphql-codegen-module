@@ -1,7 +1,7 @@
 import * as _nuxt_schema from '@nuxt/schema';
 import { Types } from '@graphql-codegen/plugin-helpers';
 
-declare type CodegenModuleOptions = Types.Config;
+type CodegenModuleOptions = Types.Config;
 declare const _default: _nuxt_schema.NuxtModule<Types.Config>;
 
 declare module '@nuxt/schema' {

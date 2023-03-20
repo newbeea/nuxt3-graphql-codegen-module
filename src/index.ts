@@ -24,8 +24,9 @@ export default defineNuxtModule<CodegenModuleOptions>({
       consola.success(`GraphQL code generated in ${time}ms`);
     }
 
-    // nuxt.hook("build:before", generateCode);
-    nuxt.hook("builder:watch", generateCode);
+    if (options.watch) {
+      nuxt.hook("builder:watch", generateCode);
+    }
   },
 })
 

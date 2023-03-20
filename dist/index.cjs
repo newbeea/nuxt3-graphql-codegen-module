@@ -24,7 +24,9 @@ const index = kit.defineNuxtModule({
       const time = Date.now() - start;
       consola__default.success(`GraphQL code generated in ${time}ms`);
     }
-    nuxt.hook("builder:watch", generateCode);
+    if (options.watch) {
+      nuxt.hook("builder:watch", generateCode);
+    }
   }
 });
 
